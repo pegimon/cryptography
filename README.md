@@ -2,7 +2,7 @@
 
 this repo is based on introduction course to cryptography in my college so  i decided to share my work and add more algorithms with some documentations.
 
-## block ciphers
+## Classical substitution ciphers
 ### ceaser cipher
 
 - this algorithm is the simplest and is easy to be attacked by brute force just trying all 26 possibilities. 
@@ -27,3 +27,13 @@ this repo is based on introduction course to cryptography in my college so  i de
 - if they were in the same column we substitute them with the characters under them.
 - if they were in different row and column then we substitute them with the inverse square(eg. ch1[0][1] , ch2[1][2] -> cipher1[0][2], cipher2[1][1]).
 - ![playfiar image](https://media.geeksforgeeks.org/wp-content/uploads/20190818175428/encryption-of-instruments.png)
+
+## Polyalphabetic Ciphers
+
+### Vigenère
+
+- simplest polyalphabetic substitution cipher
+- the key is a string 
+- main idea : the key is shifter depending on the place of the character in the alphabet.
+- we build the key by adding the input key multiple times until it reaches the length of the text (eg. poly-> polypolypo...etc).
+- then we shift every character in the plain text by the place of the character in alphabet in the key(eg. home, key = abcd -> cipher = (h+0)(o + 1)(m + 2)(e + 3) = HPOH)
