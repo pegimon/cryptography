@@ -37,3 +37,8 @@ this repo is based on introduction course to cryptography in my college so  i de
 - main idea : the key is shifter depending on the place of the character in the alphabet.
 - we build the key by adding the input key multiple times until it reaches the length of the text (eg. poly-> polypolypo...etc).
 - then we shift every character in the plain text by the place of the character in alphabet in the key(eg. home, key = abcd -> cipher = (h+0)(o + 1)(m + 2)(e + 3) = HPOH)
+
+### AutoKey
+
+- autokey is mostly the same as vigenère with one difference that the key is filled with the plaintext rather that the key itself multiple times.
+- (eg. plain = "helloworld", key = "keyhellowo")
