@@ -1,12 +1,37 @@
+filler = 'x'
+
+
+def pre_arrange_string(plain):
+    for i in range(0, len(plain), 2):
+        if i + 1 == len(plain):
+            plain += filler
+        if plain[i] == plain[i + 1]:
+            plain = plain[:i + 1] + filler + plain[i + 1:]
+    if len(plain) % 2 == 1:
+        plain += filler
+    return plain
+
+
+def remove_filler(plain):
+    newPlain = ''
+    for i in range(len(plain)):
+        if plain[i] != filler:
+            newPlain += plain[i]
+    return newPlain
+
+
 class Playfair:
     def __init__(self):
         self.__matrix = []
         self.__set = set()
 
     def encrypt(self, plain, key):
+        self.__matrix = []
+        self.__set = set()
+        key = key.lower()
         self.matrix_init(key)
         cipher = ''
-        plain = self.pre_arrange_string(plain)
+        plain = pre_arrange_string(plain)
         for i in range(0, len(plain), 2):
             e1 = self.search_matrix(plain[i])
             e2 = self.search_matrix(plain[i + 1])
@@ -22,7 +47,25 @@ class Playfair:
         return cipher
 
     def decrypt(self, cipher, key):
-        pass
+        self.__matrix = []
+        self.__set = set()
+        self.matrix_init(key)
+        plain = ''
+        cipher = cipher.lower()
+        for i in range(0, len(cipher), 2):
+            e1 = self.search_matrix(cipher[i])
+            e2 = self.search_matrix(cipher[i + 1])
+            if e1[0] == e2[0]:
+                plain += self.__matrix[e1[0]][(e1[1] - 1 + 5) % 5]
+                plain += self.__matrix[e2[0]][(e2[1] - 1 + 5) % 5]
+            elif e1[1] == e2[1]:
+                plain += self.__matrix[(e1[0] - 1 + 5) % 5][e1[1]]
+                plain += self.__matrix[(e2[0] - 1 + 5) % 5][e2[1]]
+            else:
+                plain += self.__matrix[e1[0]][e2[1]]
+                plain += self.__matrix[e2[0]][e1[1]]
+        plain = remove_filler(plain)
+        return plain
 
     def matrix_init(self, key):
         arr = []
@@ -58,11 +101,3 @@ class Playfair:
             for j in range(5):
                 if self.__matrix[i][j] == target:
                     return i, j
-
-    def pre_arrange_string(self, plain):
-        for i in range(0, len(plain), 2):
-            if i + 1 == len(plain):
-                plain += 'x'
-            if plain[i] == plain[i + 1]:
-                plain = plain[:i + 1] + 'x' + plain[i + 1:]
-        return plain
