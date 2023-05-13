@@ -4,7 +4,10 @@ def encrypt(plain, key):
     for c in plain:
         if ord(c) - ord('a') > len(key):
             raise Exception("invalid key: characters in plain text can't be encrypted by the key.")
-        cipher += key[ord(c) - ord('a')]
+        if c.isalpha():
+            cipher += key[ord(c) - ord('a')]
+        else:
+            cipher += c
     return cipher
 
 
@@ -13,5 +16,8 @@ def decrypt(cipher, key):
     cipher = cipher.lower()
     key = key.lower()
     for c in cipher:
-        plain += chr(ord('a') + key.find(c))
+        if c.isalpha():
+            plain += chr(ord('a') + key.find(c))
+        else:
+            plain += c
     return plain

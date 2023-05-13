@@ -2,7 +2,10 @@ def encrypt(plain, key):
     cipher = ''
     plain = plain.lower()
     for c in plain:
-        cipher += chr((ord(c) + int(key) - ord('a')) % 26 + ord('A'))
+        if c.isalpha():
+            cipher += chr((ord(c) + int(key) - ord('a')) % 26 + ord('A'))
+        else:
+            cipher += c
     return cipher
 
 
@@ -10,5 +13,8 @@ def decrypt(cipher, key):
     plain = ''
     cipher = cipher.lower()
     for c in cipher:
-        plain += chr((ord(c) - int(key) - ord('a') + 26) % 26 + ord('a'))
+        if c.isalpha():
+            plain += chr((ord(c) - int(key) - ord('a') + 26) % 26 + ord('a'))
+        else:
+            plain += c
     return plain
