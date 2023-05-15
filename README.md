@@ -48,8 +48,9 @@ this repo is based on introduction course to cryptography in my college so  i de
 - the main idea : we have number of rows equal to the key
 - every sequence of characters equal to the key is in separate row until we form a matrix with all characters in the plain text.
 - then we encrypt by just putting every row of characters to the cipher text.
-- ![railfence image](https://www.researchgate.net/profile/Sara-Farrag/publication/333480277/figure/fig5/AS:764200859234304@1559211091110/Encrypting-using-Rail-Fence-Cipher5.ppm)
-- the key in this image is 3 see how we put the 'H' in the first row then the 'e' and finally the 'l' the 3 sequence of characters then we moved up to put the other two characters in separate rows too.
+- ![railfence image](https://media.geeksforgeeks.org/wp-content/uploads/Untitled1.jpg)
+- the key in this image is 3 see how we put the 'G' in the first row then the 'E' and finally the 'E' the 3 sequence of characters then we moved up to put the other two characters in separate rows too.
+- the encrypted text here is "GSGSEKFREKEOE"
 - ![railfence image 2](https://www.101computing.net/wp/wp-content/uploads/rail-fence-cipher-encoding-key-4.png)
 - another example with key 4.
 
